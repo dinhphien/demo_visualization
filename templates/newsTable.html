@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>News DataTable | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="{{ url_for('static',    filename='favicon.ico') }}" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="{{ url_for('static',    filename='plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="{{ url_for('static',    filename='plugins/node-waves/waves.css') }}" rel="stylesheet" />
+
+     <!-- Sweetalert Css -->
+    <link href="{{ url_for('static',    filename='plugins/sweetalert/sweetalert.css') }}" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="{{ url_for('static',    filename='plugins/animate-css/animate.css') }}" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <!-- <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"> -->
+
+    <!-- JQuery DataTable Css -->
+
+    <link href="{{ url_for('static',    filename='plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',    filename='plugins/jquery-datatable/skin/bootstrap/css/select.bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Multi Select Css -->
+    <link href="{{ url_for('static',    filename='plugins/multi-select/css/multi-select.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap Select Css -->
+    <link href="{{ url_for('static',    filename='plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="{{ url_for('static',    filename='css/style.css') }}" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{{ url_for('static',    filename='css/themes/all-themes.css') }}" rel="stylesheet" />
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="{{ url_for('hello_world') }}">DEMO</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">person</i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="body">
+                                <a href="javascript:void(0);" id="logout">
+                                    LOG OUT
+                                </a>
+                                <a href="javascript:void(0);">
+                                    CHANGE PASSWORD
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MAIN NAVIGATION</li>
+{#                    <li>#}
+{#                        <a href="{{ url_for('hello_world') }}">#}
+{#                            <i class="material-icons">home</i>#}
+{#                            <span>Home</span>#}
+{#                        </a>#}
+{#                    </li>#}
+                    <li>
+                        <a href="{{ url_for('visualization') }}">
+                            <i class="material-icons">timeline</i>
+                            <span>Visualization</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="{{ url_for('news') }}">
+                            <i class="material-icons">fiber_new</i>
+                            <span>News Table</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('entity') }}">
+                            <i class="material-icons">widgets</i>
+                            <span>Entity Table</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                   <a href="javascript:void(0);">Visualization - Demo</a>.
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+                <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+                    <ul class="demo-choose-skin">
+                        <li data-theme="red" class="active">
+                            <div class="red"></div>
+                            <span>Red</span>
+                        </li>
+                        <li data-theme="pink">
+                            <div class="pink"></div>
+                            <span>Pink</span>
+                        </li>
+                        <li data-theme="purple">
+                            <div class="purple"></div>
+                            <span>Purple</span>
+                        </li>
+                        <li data-theme="deep-purple">
+                            <div class="deep-purple"></div>
+                            <span>Deep Purple</span>
+                        </li>
+                        <li data-theme="indigo">
+                            <div class="indigo"></div>
+                            <span>Indigo</span>
+                        </li>
+                        <li data-theme="blue">
+                            <div class="blue"></div>
+                            <span>Blue</span>
+                        </li>
+                        <li data-theme="light-blue">
+                            <div class="light-blue"></div>
+                            <span>Light Blue</span>
+                        </li>
+                        <li data-theme="cyan">
+                            <div class="cyan"></div>
+                            <span>Cyan</span>
+                        </li>
+                        <li data-theme="teal">
+                            <div class="teal"></div>
+                            <span>Teal</span>
+                        </li>
+                        <li data-theme="green">
+                            <div class="green"></div>
+                            <span>Green</span>
+                        </li>
+                        <li data-theme="light-green">
+                            <div class="light-green"></div>
+                            <span>Light Green</span>
+                        </li>
+                        <li data-theme="lime">
+                            <div class="lime"></div>
+                            <span>Lime</span>
+                        </li>
+                        <li data-theme="yellow">
+                            <div class="yellow"></div>
+                            <span>Yellow</span>
+                        </li>
+                        <li data-theme="amber">
+                            <div class="amber"></div>
+                            <span>Amber</span>
+                        </li>
+                        <li data-theme="orange">
+                            <div class="orange"></div>
+                            <span>Orange</span>
+                        </li>
+                        <li data-theme="deep-orange">
+                            <div class="deep-orange"></div>
+                            <span>Deep Orange</span>
+                        </li>
+                        <li data-theme="brown">
+                            <div class="brown"></div>
+                            <span>Brown</span>
+                        </li>
+                        <li data-theme="grey">
+                            <div class="grey"></div>
+                            <span>Grey</span>
+                        </li>
+                        <li data-theme="blue-grey">
+                            <div class="blue-grey"></div>
+                            <span>Blue Grey</span>
+                        </li>
+                        <li data-theme="black">
+                            <div class="black"></div>
+                            <span>Black</span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="settings">
+                    <div class="demo-settings">
+                        <p>GENERAL SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Report Panel Usage</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Email Redirect</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>SYSTEM SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Notifications</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Auto Updates</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>ACCOUNT SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Offline</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Location Permission</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- #END# Right Sidebar -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    NEWS DATATABLE
+                </h2>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <form class="form-horizontal">
+                                <div class="row clearfix">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label ">
+                                         <label>Property Value: </label>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="property values" id="inputSearchPropertyNews">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                        <button type="button" class="btn btn-primary m-l-15 waves-effect" id="searchNews">Search</button>
+                                    </div>
+                                    <ul class="header-dropdown m-r--5 text-center">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+                                            </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="javascript:void(0);" id="createNews" data-toggle="modal" data-target="#createNewsModal">New</a></li>
+                                                <li><a href="javascript:void(0);" id="addFactNews">Add Fact</a></li>
+                                                <li><a href="javascript:void(0);" id="updateNews">Update</a></li>
+                                                <li><a href="javascript:void(0);" id="deleteNews">Delete</a></li>
+                                                <li><a href="javascript:void(0);" id="detailFact" >Fact Detail</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="newsTablePage">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Link</th>
+                                            <th>Topics</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Basic Examples -->
+        </div>
+    </section>
+
+
+     <!-- Modal Dialogs ====================================================================================================================== -->
+            <!-- Use this modal to create a new entity -->
+            <div class="modal fade" id="createNewsModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Create News Entity</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="row clearfix">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
+                                        <label for="email_address_2" >URL: </label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="newsURLCreatNewsModal" class="form-control" placeholder="http://abc.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
+                                        <label for="password_2">Topics: </label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea class="form-control" placeholder="Education, Health" rows="3" id="topicsNewsCreateNewsModal"></textarea> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect" id="createNewsButton">SAVE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Use this modal to update a new entity -->
+            <div class="modal fade" id="updateNewsModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Update News</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="row clearfix">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
+                                        <label for="email_address_2">News ID: </label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="" id="newsIDUpdateNewsModal" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
+                                        <label for="email_address_2">URL: </label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Enter URL news" id="inputURLUpdateNewsModal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
+                                        <label >Topics:</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea class="form-control" placeholder="Education, Health," rows="3" id="inputTopicsUpdateNewsModal"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect" id="saveUpdatedNews">SAVE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail fact modal -->
+
+            <div class="modal fade" id="detailFactNewsModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">Fact Detail</h4>
+                        </div>
+                        <div class="modal-body">
+                           <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="factDetailDataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>FactID</th>
+                                            <th>SubjectID</th>
+                                            <th>Relation</th>
+                                            <th>ObjectID</th>
+                                            <th>TimeID</th>
+                                            <th>LocationID</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>FactID</th>
+                                            <th>SubjectID</th>
+                                            <th>Relation</th>
+                                            <th>ObjectID</th>
+                                            <th>TimeID</th>
+                                            <th>LocationID</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect" id="deleteFactNews">DELETE FACT</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add fact modal -->
+
+
+            <div class="modal fade" id="addFactModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+                                <form class="form-horizontal">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label text-center">
+                                            <select class="form-control show-tick" id="selectTypeEntityAddFactModal">
+                                                <option>Person</option>
+                                                <option>Organization</option>
+                                                <option>Country</option>
+                                                <option>Event</option>
+                                                <option>Agreement</option>
+                                                <option>Location</option>
+                                                <option>Time</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label ">
+                                            <label>Property: </label>
+                                        </div>
+                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="property values" id="inputTextSearchAddFactModal">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                            <button type="button" class="btn btn-primary m-l-15 waves-effect" id="searchEntityAddFactModal" >Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 text-center">
+                                <h4 class="modal-title" id="factInfo">Fact Info</h4>  
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row clearfix">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="entitySearchAddFactModal">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 ">
+                                    <form>
+                                        <label>Relation Type: </label>
+                                        <select class="form-control show-tick" id="selectRelationTypeAddFact">
+                                            <option selected>gặp gỡ</option>
+                                            <option>tổ chức</option>
+                                            <option>ký thỏa thuận</option>
+                                            <option>tham gia</option>
+                                            <option>ủng hộ</option>
+                                            <option>phản đối</option>
+                                            <option>phát biểu tại</option>
+                                            <option>căng thẳng với</option>
+                                            <option>hủy bỏ</option>
+                                            <option>đàm phán với</option>
+                                        </select>
+                                        <label>Subject Relation: </label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Enter subject id" id="subjectIDAddFact">
+                                            </div>
+                                        </div>
+                                        <label>Object Relation: </label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input class="form-control" placeholder="Enter object id" id="objectIDAddFact">
+                                            </div>
+                                        </div>
+                                        <label>Occurred on: </label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input   class="form-control" placeholder="Enter time id" id="timeIDAddFact">
+                                            </div>
+                                        </div>
+                                        <label>Occurred in: </label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input   class="form-control" placeholder="Enter location id" id="locationIDAddFact">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div style="float: left;">
+                                <button type="button" class="btn btn-link waves-effect" id="addSubjectFact">ADD SUBJECT</button>
+                                <button type="button" class="btn btn-link waves-effect" id="addObjectFact">ADD OBJECT</button>
+                                <button type="button" class="btn btn-link waves-effect" id="addTimeFact">ADD TIME</button>
+                                <button type="button" class="btn btn-link waves-effect" id="addLocationFact">ADD LOCATION</button>  
+                            </div>
+                            
+                            <button type="button" class="btn btn-link waves-effect" id="addFactToNews">ADD FACT</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Jquery Core Js -->
+    <script src="{{ url_for('static',    filename='plugins/jquery/jquery.min.js') }}"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="{{ url_for('static',    filename='plugins/bootstrap/js/bootstrap.js') }}"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="{{ url_for('static',    filename='plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="{{ url_for('static',    filename='plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+
+    <!-- Multi Select Plugin Js -->
+    <script src="{{ url_for('static',    filename='plugins/multi-select/js/jquery.multi-select.js') }}"></script>
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="{{ url_for('static',    filename='plugins/sweetalert/sweetalert.min.js') }}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{{ url_for('static',    filename='plugins/node-waves/waves.js') }}"></script>
+
+     <!-- JQuery Steps Plugin Js -->
+    <script src="{{ url_for('static',    filename='plugins/jquery-steps/jquery.steps.js') }}"></script>
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{{ url_for('static',    filename='plugins/jquery-datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static',    filename='plugins/jquery-datatable/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ url_for('static',    filename='plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.min.js') }}"></script>
+
+    <!-- Custom Js -->
+    <script src="{{ url_for('static',    filename='js/admin.js') }}"></script>
+    <script src="{{ url_for('static',    filename='js/pages/tables/news-table.js') }}"></script>
+    <!-- <script src="../../js/pages/forms/form-wizard.js"></script> -->
+
+    <!-- Demo Js -->
+    <script src="{{ url_for('static',    filename='js/demo.js') }}"></script>
+</body>
+
+</html>
