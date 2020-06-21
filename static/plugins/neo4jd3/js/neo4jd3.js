@@ -37,7 +37,7 @@ function Neo4jD3(_selector, _options) {
     function appendGraph(container) {
         svg = container.append('svg')
                        .attr('width', '100%')
-                       .attr('height', '650')
+                       .attr('height', '630')
                        .attr('class', 'neo4jd3-graph')
                        .call(d3.zoom().on('zoom', function() {
                            var scale = d3.event.transform.k,
@@ -264,9 +264,17 @@ function Neo4jD3(_selector, _options) {
                                    options.onRelationshipDoubleClick(d);
                                }
                            })
+                           .on('click', function (d) {
+
+                           })
                            .on('mouseenter', function(d) {
                                if (info) {
                                    updateInfo(d);
+                               }
+                           })
+                            .on('mouseleave', function(d) {
+                               if (info) {
+                                   clearInfo(d);
                                }
                            });
     }
@@ -287,8 +295,8 @@ function Neo4jD3(_selector, _options) {
         return r.append('text')
                 .attr('class', 'text')
                 .attr('fill', '#000000')
-                .attr('font-size', '8px')
-                .attr('pointer-events', 'none')
+                .attr('font-size', '11px')
+                .attr('pointer-events', 'auto')
                 .attr('text-anchor', 'middle')
                 .text(function(d) {
                     return d.type;
@@ -549,9 +557,10 @@ function Neo4jD3(_selector, _options) {
                            .force('charge', d3.forceManyBody().strength(function strength() {
                                return 200;
                            }))
+                           // .force('charge', d3.forceManyBody())
                            .force('link', d3.forceLink().id(function(d) {
                                return d.id;
-                           }))
+                           }).distance(120))
                            .force('center', d3.forceCenter(svg.node().parentElement.parentElement.clientWidth / 2, svg.node().parentElement.parentElement.clientHeight / 2))
                            // .force('center', d3.forceCenter( 600,  330))
                            .on('tick', function() {

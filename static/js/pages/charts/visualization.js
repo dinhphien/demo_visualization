@@ -107,9 +107,9 @@ var config_neo4jd3 = {
     icons: {
 
     },
-    minCollision: 40,
+    minCollision: 60,
     neo4jData: jsonData,
-    nodeRadius: 25,
+    nodeRadius: 30,
     onNodeClick : function(node){
         console.log(node)
         console.log(neo4jd3)
